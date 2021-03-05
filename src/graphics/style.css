@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sixteen-by-nine {
+  position: relative; 
+  width: 100%; 
+  padding-top: 56.25%;
+}
+
+.sixteen-by-nine > * {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  bottom: 0; 
+  right: 0; 
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #eee;
+  padding: 1rem;
+
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-rows: 15% auto auto 15%;
+  grid-template-columns: 70% 30%;
+  justify-items: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#top-banner { grid-area: 1 / 1 / 1 / 1; }
+#dj-logo { grid-area: 1 / 2 / 1 / 2; }
+#big-viewport { grid-area: 2 / 1 / span 2 / span 1; }
+#infopanel { grid-area: 2 / 2 / 2 / 2; }
+#small-viewport { grid-area: 3 / 2 / 3 / 2; }
+#bottom-banner { grid-area: 4 / 1 / span 1 / span 2;}
+
+#top-banner {
+  font-family: Impact;
+  font-size: 7vh;
+  font-style: italic;
+  color: rgb(212, 181, 0);
+  filter: drop-shadow(0 0 5px rgba(255, 217, 0, 0.445));
+}
+
+#dj-logo {
+  height: 100%;
+}
+
+#big-viewport, #small-viewport {
+  background-color: silver;
+  align-self: flex-end;
+}
+
+#big-viewport {
+  color: black;
+  font-size: 3vh;
+  font-family: Impact;
+  font-style: italic;
+}
+
+#big-viewport > div {
+  display: flex;
+  background-color: hsl(0, 0%, 20%);
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#white {
+  color: white;
+}
+
+#yellow {
+  color:rgb(212, 181, 0);
+}
+
+#infopanel {
+  flex: 1;
+}
+
+#bottom-banner {
+  font-family: Impact;
+  font-size: 6vh;
+  color: gold;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+
+  display: flex;
+  align-items: center;
+}
+
+.marquee3k {
+  margin: 1rem;
+  overflow: hidden;
+}
+
+#infopanel {
+  width: 100%;
+}
+
+#discord-link {
+  font-family: Impact;
+  font-size: 6vh;
+  padding-left: 3rem;
+  font-style: italic;
+}
+
+#discord-link-subtitle {
+  font-family: Impact;
+  font-style: italic;
+  font-size: 2.5vh;
+  background-color: rgb(212, 181, 0);
+  clip-path: polygon(15% 0%, 100% 0, calc(100% - 15%) 100%, 0% 100%);
+  padding: 0 3rem;
+  color: black;
+}
+
+#parrot-links-container {
+  display: flex;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+#parrot {
+  height: 12vh;
+  margin-right: 1rem;
+}
+
+#link-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2vh;
+  text-align: right;
+  font-style: italic;
+  flex: 1;
+}
