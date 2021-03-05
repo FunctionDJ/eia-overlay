@@ -9,6 +9,13 @@
   },
   "nodecg": {
     "compatibleRange": ">=0.9",
+    "assetCategories": [
+      {
+        "name": "djlogos",
+        "title": "DJ Logos",
+        "allowedTypes": ["jpg", "png", "webm", "jpeg", "gif"]
+      }
+    ],
     "dashboardPanels": [
       {
         "name": "hello-world",
@@ -20,7 +27,7 @@
     ],
     "graphics": [
       {
-        "file": "eia-overlay.html",
+        "file": "index.html",
         "width": 1920,
         "height": 1080
       }

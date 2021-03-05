@@ -1,56 +1,62 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { SocialPlatform } from "../data/SocialPlatform";
+import { SocialEntry } from "../data/SocialEntry";
+import Social from "./Social";
 
 interface SocialsProps {
-  socials: string[]
-  setSocials: React.Dispatch<React.SetStateAction<string[]>>
+  socials: SocialEntry[]
+  setSocials: React.Dispatch<React.SetStateAction<SocialEntry[]>>
 }
 
 const Socials: React.FC<SocialsProps> = ({ socials, setSocials }) => {
-  function addSocial() {
+  function add() {
+    setSocials(oldSocials => [...oldSocials, {
+      platform: "Blank",
+      tag: ""
+    }]);
+  }
+
+  function changeTag(index: number, value: string) {
     setSocials(oldSocials => {
-      oldSocials.push("");
-      return [...oldSocials];
+      const clone = [...oldSocials];
+      clone[index].tag = value;
+      return clone;
     });
   }
 
-  function changeSocial(index: number, value: string) {
+  function changePlatform(index: number, value: SocialPlatform) {
     setSocials(oldSocials => {
-      oldSocials[index] = value;
-      return [...oldSocials];
+      const clone = [...oldSocials];
+      clone[index].platform = value;
+      return clone;
     });
   }
 
-  function removeSocial(index: number) {
+  function remove(index: number) {
     setSocials(oldSocials => {
-      oldSocials.splice(index, 1);
-      return [...oldSocials];
+      const clone = [...oldSocials];
+      clone.splice(index, 1);
+      return clone;
     });
   }
 
   return (
-    <td className="is-flex is-flex-direction-column" style={{ rowGap: "0.5rem" }}>
+    <div className="is-flex is-flex-direction-column" style={{ rowGap: "0.5rem" }}>
       {socials.map((social, index) => (
-        <div key={index} className="control is-flex" style={{ columnGap: "0.2rem" }}>
-          <input
-            className="input is-small"
-            key={index}
-            value={social}
-            onChange={e => changeSocial(index, e.currentTarget.value)}
-          />
-          <button
-            className="button is-small is-danger"
-            onClick={() => removeSocial(index)}
-          >
-            <FontAwesomeIcon icon={faTimes}/>
-          </button>
-        </div>
+        <Social
+          key={index}
+          social={social}
+          changePlatform={value => changePlatform(index, value)}
+          changeTag={value => changeTag(index, value)}
+          remove={() => remove(index)}
+        />
       ))}
-      <button className="button is-small is-success is-fullwidth" onClick={addSocial}>
+      <button className="button is-small is-success is-fullwidth" onClick={add}>
         <FontAwesomeIcon icon={faPlus}/>
       </button>
-    </td>
+    </div>
   );
 };
 
