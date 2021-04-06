@@ -16,6 +16,6 @@ declare class Marquee3k {
   static init(options?: Options): void
 }
 
-declare module 'marquee3000' {
+declare module "marquee3000" {
   export = Marquee3k
 }

@@ -11,36 +11,32 @@ interface SocialsProps {
 }
 
 const Socials: React.FC<SocialsProps> = ({ socials, setSocials }) => {
-  function add() {
+  const add = () =>
     setSocials(oldSocials => [...oldSocials, {
       platform: "Blank",
       tag: ""
     }]);
-  }
 
-  function changeTag(index: number, value: string) {
-    setSocials(oldSocials => {
-      const clone = [...oldSocials];
-      clone[index].tag = value;
-      return clone;
-    });
-  }
+  const changeTag = (index: number, value: string) =>
+    setSocials(socials.map((s, i) => {
+      if (i === index) {
+        s.tag = value;
+      }
 
-  function changePlatform(index: number, value: SocialPlatform) {
-    setSocials(oldSocials => {
-      const clone = [...oldSocials];
-      clone[index].platform = value;
-      return clone;
-    });
-  }
+      return s;
+    }));
 
-  function remove(index: number) {
-    setSocials(oldSocials => {
-      const clone = [...oldSocials];
-      clone.splice(index, 1);
-      return clone;
-    });
-  }
+  const changePlatform = (index: number, value: SocialPlatform) =>
+    setSocials(socials.map((s, i) => {
+      if (i === index) {
+        s.platform = value;
+      }
+
+      return s;
+    }));
+
+  const remove = (index: number) =>
+    setSocials(socials.filter((_, i) => i !== index));
 
   return (
     <div className="is-flex is-flex-direction-column" style={{ rowGap: "0.5rem" }}>

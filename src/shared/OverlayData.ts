@@ -7,6 +7,7 @@ interface OverlayData {
   discordLink: string
   discordLinkSubtitle: string
   socials: SocialEntry[]
+  lineup: string
 }
 
 export default OverlayData;

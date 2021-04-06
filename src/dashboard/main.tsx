@@ -1,13 +1,14 @@
 /* global nodecg */
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import OverlayData from "../shared/OverlayData";
+import clone from "./clone";
+import HeadingRow from "./components/HeadingRow";
 import LoaderOverlay from "./components/LoaderOverlay";
-import LogoPicker from "./components/LogoPicker";
+import LogoRow from "./components/LogoRow";
 import RowLabelInput from "./components/RowLabelInput";
-import Socials from "./components/Socials";
+import SocialsRow from "./components/SocialsRow";
+import UpdateButtonRow from "./components/UpdateButtonRow";
 import { SocialEntry } from "./data/SocialEntry";
 
 const replicant = nodecg.Replicant<OverlayData>("overlay-data", {
@@ -22,7 +23,8 @@ const replicant = nodecg.Replicant<OverlayData>("overlay-data", {
         platform: "Twitch",
         tag: "@FunctionDJ"
       }
-    ]
+    ],
+    lineup: "[[no lineup yet]]"
   }
 });
 
@@ -30,12 +32,12 @@ const Dashboard: React.FC = () => {
   const [loader, setLoader] = useState(true);
 
   const [socials, setSocials] = useState<SocialEntry[]>([]);
-  const [showCheckmark, setShowCheckmark] = useState(false);
   const [logoURL, setLogoURL] = useState<string>("");
   const [heading, setHeading] = useState("");
   const [djName, setDJName] = useState("");
   const [discordLink, setDiscordLink] = useState("");
   const [discordLinkSubtitle, setDiscordLinkSubtitle] = useState("");
+  const [lineup, setLineup] = useState("");
 
   const getSerializedState = () => JSON.stringify({
     heading,
@@ -43,7 +45,8 @@ const Dashboard: React.FC = () => {
     logoURL,
     discordLink,
     discordLinkSubtitle,
-    socials
+    socials,
+    lineup
   });
 
   useEffect(() => {
@@ -61,7 +64,8 @@ const Dashboard: React.FC = () => {
       setLogoURL(newValue.logoURL);
       setDiscordLink(newValue.discordLink);
       setDiscordLinkSubtitle(newValue.discordLinkSubtitle);
-      setSocials(newValue.socials);
+      setSocials(clone(newValue.socials));
+      setLineup(newValue.lineup);
     });
   }, []);
 
@@ -69,12 +73,6 @@ const Dashboard: React.FC = () => {
     // we deep-clone our state so that nodecg doesn't see any changes we make on the state until we hit update again
     const stateDeepClone = JSON.parse(getSerializedState());
     replicant.value = stateDeepClone;
-
-    setShowCheckmark(true);
-
-    setTimeout(() => {
-      setShowCheckmark(false);
-    }, 2000);
   }
 
   return (
@@ -83,42 +81,19 @@ const Dashboard: React.FC = () => {
       <table className="table is-fullwidth">
         <colgroup>
           <col span={1}/>
-          <col span={1} style={{ minWidth: 350 }}/>
+          <col span={1} style={{ minWidth: 300 }}/>
         </colgroup>
         <tbody>
+          <HeadingRow>General</HeadingRow>
           <RowLabelInput name="Heading" value={heading} setValue={setHeading}/>
-          <RowLabelInput name="DJ Name" value={djName} setValue={setDJName}/>
-          <tr>
-            <td>Logo</td>
-            <td>
-              <LogoPicker
-                logoURL={logoURL}
-                setLogoURL={setLogoURL}
-              />
-            </td>
-          </tr>
           <RowLabelInput name="Discord Link" value={discordLink} setValue={setDiscordLink}/>
           <RowLabelInput name="Discord Link Subtitle" value={discordLinkSubtitle} setValue={setDiscordLinkSubtitle}/>
-          <tr>
-            <td>Socials</td>
-            <td>
-              <Socials socials={socials} setSocials={setSocials}/>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <button
-                className="button is-success is-small is-fullwidth"
-                onClick={update}
-              >
-                <div className="is-flex is-align-items-center" style={{ columnGap: "0.5rem" }}>
-                  <span className="fa fa-fw"/>
-                  Update
-                  <FontAwesomeIcon opacity={showCheckmark ? 1 : 0} icon={faCheck}/>
-                </div>
-              </button>
-            </td>
-          </tr>
+          <RowLabelInput name="Lineup" value={lineup} setValue={setLineup}/>
+          <HeadingRow>DJ-specific</HeadingRow>
+          <RowLabelInput name="DJ Name" value={djName} setValue={setDJName}/>
+          <LogoRow logoURL={logoURL} setLogoURL={setLogoURL}/>
+          <SocialsRow socials={socials} setSocials={setSocials}/>
+          <UpdateButtonRow update={update}/>
         </tbody>
       </table>
     </>
