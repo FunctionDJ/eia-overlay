@@ -1,6 +1,6 @@
 import { SocialEntry } from "../dashboard/data/SocialEntry";
 
-interface OverlayData {
+export interface OverlayDataWIP {
   heading: string
   djName: string
   logoURL: string
@@ -10,4 +10,8 @@ interface OverlayData {
   lineup: string
 }
 
-export default OverlayData;
+export interface GraphicDataPage {
+  djName: string
+  logoURL: string
+  socials: SocialEntry[]
+}
