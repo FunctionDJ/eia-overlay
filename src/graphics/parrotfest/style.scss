@@ -108,6 +108,8 @@ body {
   justify-content: space-around;
   align-items: center;
 
+  filter: drop-shadow(0 0.2vh 0.4vh black);
+
   > div {
     @extend .sketch;
     @extend .flex-center;
