@@ -27,36 +27,32 @@
 }
 
 :root {
-  background-color: #2b2b2b;
-  background-image: linear-gradient(
-      45deg,
-      #333 25%,
-      transparent 25%,
-      transparent 75%,
-      #333 75%,
-      #333
-    ),
-    linear-gradient(
-      -45deg,
-      #333 25%,
-      transparent 25%,
-      transparent 75%,
-      #333 75%,
-      #333
-    );
-  background-size: 2vh 2vh;
+  // background-color: #2b2b2b;
+  // background-image: linear-gradient(
+  //     45deg,
+  //     #333 25%,
+  //     transparent 25%,
+  //     transparent 75%,
+  //     #333 75%,
+  //     #333
+  //   ),
+  //   linear-gradient(
+  //     -45deg,
+  //     #333 25%,
+  //     transparent 25%,
+  //     transparent 75%,
+  //     #333 75%,
+  //     #333
+  //   );
+  // background-size: 2vh 2vh;
   /* background-position: center; */
-  background-repeat: repeat;
+  // background-repeat: repeat;
+  background: transparent !important;
 }
 
 html, body {
   height: 100%;
   width: 100%;
-}
-
-@font-face {
-  font-family: metropolis-bold;
-  src: url(./fonts/metropolis-bold/Metropolis-Bold.otf)
 }
 
 body {
@@ -89,7 +85,7 @@ body {
 #dj-name {
   position: absolute;
   text-align: center;
-  top: 19vh;
+  top: 19.35vh;
   left: 65vh;
   transform: translateX(-50%);
   color: white;
@@ -103,9 +99,10 @@ body {
   left: 5.3vh;
   right: 54.8vh;
   height: 6vh;
-  bottom: 15.2vh;
-  padding: 0 5vh;
-  gap: 1vh;
+  bottom: 15vh;
+  padding: 0 4vh;
+
+  font-weight: bold;
 
   display: flex;
   justify-content: space-around;
@@ -115,21 +112,22 @@ body {
     @extend .sketch;
     @extend .flex-center;
     flex: 1;
-
-    gap: 1.5vh;
+    margin: 0 2vh;
 
     > img {
       height: 3vh;
       max-width: 6vh;
       object-fit: contain;
+      margin-right: 1vh;
     }
 
     > .icon {
       font-size: 2.5vh;
+      margin-right: 1.5vh;
     }
 
     > .tag {
-      transform: translateY(0.15vh);
+      transform: translateY(0.07vh);
       font-size: 1.7vh;
     }
   }
