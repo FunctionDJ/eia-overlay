@@ -29,7 +29,7 @@ lineupReplicant.on("change", lineup => {
   Marquee3k.pause(0);
 
   bottomBanner.innerHTML = `
-    <div class="marquee3k" data-speed="2.5">
+    <div class="marquee3k" data-speed="0.5">
       <p>
         ${lineup}
       </p>

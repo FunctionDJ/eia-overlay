@@ -45,7 +45,7 @@
   //     #333
   //   );
   // background-size: 2vh 2vh;
-  /* background-position: center; */
+  // background-position: center;
   // background-repeat: repeat;
   background: transparent !important;
 }
@@ -58,12 +58,6 @@ html, body {
 body {
   max-width: calc(1.777777 * 100vh);
   margin: auto;
-
-  background-image: url(./images/static.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  
   position: relative;
   font-family: metropolis;
   color: white;
@@ -101,14 +95,14 @@ body {
   height: 6vh;
   bottom: 15vh;
   padding: 0 4vh;
+  z-index: -10;
+  background-color: hsla(0, 0%, 0%, 0.4);
 
   font-weight: bold;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
-
-  filter: drop-shadow(0 0.2vh 0.4vh black);
 
   > div {
     @extend .sketch;
@@ -152,4 +146,18 @@ body {
   margin: 0 2vh;
   overflow: hidden;
   transform: translateY(0.1vh);
+}
+
+#image-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+
+  background-image: url(./images/static.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
