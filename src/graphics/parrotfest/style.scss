@@ -136,16 +136,15 @@ body {
   right: 4.6vh;
   bottom: 3vh;
   height: 8.5vh;
+  padding: 0 1vh;
 
   font-weight: bold;
   font-size: 4vh;
-  overflow: hidden;
-}
+  white-space: nowrap;
 
-.marquee3k {
-  margin: 0 2vh;
-  overflow: hidden;
-  transform: translateY(0.1vh);
+  > * {
+    flex: 1;
+  }
 }
 
 #image-overlay {

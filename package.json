@@ -5,11 +5,11 @@
     "build:dashboard": "parcel build ./src/dashboard/build/*.pug --public-url ./ -d dashboard",
     "build:graphics": "parcel build ./src/graphics/*/build/*.pug --public-url ./ -d graphics",
     "build": "concurrently \"npm run build:dashboard\" \"npm run build:graphics\"",
-
     "dev:dashboard": "parcel watch ./src/dashboard/build/*.pug --public-url ./ -d dashboard",
     "dev:graphics": "parcel watch ./src/graphics/*/build/*.pug --public-url ./ -d graphics",
     "dev": "npm-run-all --parallel dev:dashboard dev:graphics",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "cg": "npm start --prefix ../.."
   },
   "nodecg": {
     "compatibleRange": ">=0.9",
@@ -84,8 +84,8 @@
     "pug": "^3.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-double-marquee": "^1.1.0",
     "sass": "^1.32.8",
     "typescript": "^4.2.2"
-  },
-  "dependencies": {}
+  }
 }

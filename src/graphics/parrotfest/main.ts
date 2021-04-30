@@ -1,9 +1,6 @@
 /* global nodecg */
-import Marquee3k from "marquee3000";
 import { SocialEntry } from "../../dashboard/data/SocialEntry";
 import { GraphicDataPage } from "../../shared/OverlayData";
-
-Marquee3k.init();
 
 const mapFontAwesomeIcon = (iconName: string): string => {
   switch (iconName.toLowerCase()) {
@@ -11,8 +8,6 @@ const mapFontAwesomeIcon = (iconName: string): string => {
     default: return iconName.toLowerCase();
   }
 };
-
-const bottomBanner = document.querySelector<HTMLDivElement>("#bottom-banner")!;
 
 const djName = document.querySelector<HTMLSpanElement>("#dj-name")!;
 const logo = document.querySelector<HTMLImageElement>("#dj-logo")!;
@@ -22,22 +17,6 @@ const socialsContainer = document.querySelector<HTMLDivElement>("#socials-contai
 const page = window.page;
 
 const replicant = nodecg.Replicant<GraphicDataPage>(`for-graphic-${page}`);
-
-const lineupReplicant = nodecg.Replicant<string>("lineup");
-
-lineupReplicant.on("change", lineup => {
-  Marquee3k.pause(0);
-
-  bottomBanner.innerHTML = `
-    <div class="marquee3k" data-speed="0.5">
-      <p>
-        ${lineup}
-      </p>
-    </div>
-  `;
-
-  Marquee3k.init();
-});
 
 function mapSocialToElement(socialEntry: SocialEntry): HTMLElement {
   const social = document.createElement("div");
