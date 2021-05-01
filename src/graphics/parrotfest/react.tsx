@@ -16,7 +16,7 @@ const App = () => {
     <Marquee
       direction="left"
       delay={0}
-      speed={0.02}
+      speed={0.04}
       childMargin={0}
     >
       {text}
