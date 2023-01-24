@@ -50,7 +50,8 @@
   background: transparent !important;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -131,7 +132,7 @@ body {
 
 #bottom-banner {
   @extend .flex-center;
-  position:absolute;
+  position: absolute;
   left: 5.1vh;
   right: 4.6vh;
   bottom: 3vh;
@@ -155,7 +156,7 @@ body {
   bottom: 0;
   z-index: -1;
 
-  background-image: url(./images/static.png);
+  background-image: url(./images/2022.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
